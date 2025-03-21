@@ -1,5 +1,5 @@
 # Step 1: Build Stage (using Node 18 for building the app)
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /usr/src/app
 
@@ -20,7 +20,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # Step 3: Production Stage (using a smaller image for runtime)
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
