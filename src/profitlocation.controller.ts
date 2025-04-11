@@ -1,7 +1,8 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 import { nextTick } from 'process';
 import { randomInt } from 'crypto';
+import { Prisma } from '@prisma/client';
 
 @Controller('data')
 export class ProfitLocationController {
@@ -20,15 +21,31 @@ export class ProfitLocationController {
     });
   }
 
+  @Delete('profit/:id')
+  async deleteProfit(@Param('id') id: number) {
+    try {
+      return await this.prisma.profits.delete({
+        where: {
+          id: Number(id),
+        },
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @Get('profit')
+  async getProfits(
+  ) {
+    return await this.prisma.profits.findMany();
+  }
+
   @Post('profit')
   async createProfit(
-    @Body() data: { morning_profit: number; night_profit: number },
+    @Body() data: Prisma.profitsCreateInput,
   ) {
     return await this.prisma.profits.create({
-      data: {
-        morning_profit: data.morning_profit,
-        night_profit: data.night_profit,
-      },
+      data
     });
   }
 }

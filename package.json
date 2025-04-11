@@ -8,8 +8,8 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "prisma migrate dev && nest start ",
-    "dev": "nest start --watch",
+    "start": "prisma generate && prisma migrate dev && nest start",
+    "dev": "prisma generate &&   prisma migrate dev && nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "prisma migrate dev && node dist/main ",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -30,7 +30,7 @@
     "tsx": "^4.19.3"
   },
   "engines": {
-    "node": ">=20 <21"
+    "node": "20.x"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

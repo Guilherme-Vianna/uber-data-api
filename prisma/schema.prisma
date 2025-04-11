@@ -15,8 +15,9 @@ model locations {
 }
 
 model profits {
-  id             Int      @id @default(autoincrement())
-  morning_profit Decimal
-  night_profit   Decimal
-  createdAt      DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  profit       Decimal
+  hours_worked Decimal
+  notes        String
+  createdAt    DateTime @default(now())
 }
