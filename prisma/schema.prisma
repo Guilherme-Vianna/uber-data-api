@@ -19,5 +19,8 @@ model profits {
   profit       Decimal
   hours_worked Decimal
   notes        String
+  morning      Boolean  @default(false)
+  afternoon    Boolean  @default(false)
+  night        Boolean  @default(false)
   createdAt    DateTime @default(now())
 }
