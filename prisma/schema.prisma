@@ -17,8 +17,10 @@ model locations {
 model profits {
   id           Int      @id @default(autoincrement())
   profit       Decimal
-  hours_worked Decimal
+  hours_worked Decimal  @default(0)
   notes        String
+  start_date   DateTime @default(now())
+  end_date     DateTime @default(now())
   morning      Boolean  @default(false)
   afternoon    Boolean  @default(false)
   night        Boolean  @default(false)
